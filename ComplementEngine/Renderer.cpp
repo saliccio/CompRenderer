@@ -11,7 +11,7 @@ namespace ComplementEngine {
 	}
 
 	Renderer::Renderer(Camera& camera)
-		: m_Camera(camera), m_VPMatrix(m_Camera.getProjectionMatrix() * m_Camera.getViewMatrix())
+		: m_Camera(camera), m_VPMatrix(m_Camera.getProjectionMatrix() * m_Camera.getViewMatrix()), m_BoundTransformPtr(nullptr)
 	{
 		camera.transform.onViewMatrixChange += [&](const glm::mat4& newViewMatrixValue) { calculateVP(newViewMatrixValue); };
 	}

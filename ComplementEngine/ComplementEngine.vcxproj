@@ -167,6 +167,7 @@
     <ClCompile Include="CameraTransform.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Gizmo.cpp" />
     <ClCompile Include="GLFWContext.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="CE_Macros.h" />
     <ClInclude Include="CGE_Events\EventDispatcher.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Gizmo.h" />
     <ClInclude Include="RenderModel.h" />
     <ClInclude Include="static_construction.hpp" />
     <ClInclude Include="Component.h" />
