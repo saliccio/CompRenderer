@@ -20,6 +20,7 @@
 #include "GLFWContext.h"
 #include "Vertex.h"
 #include "Entity.h"
+#include "Gizmo.h"
 
 #include "CE_Macros.h"
 
@@ -134,7 +135,6 @@ int main() {
 
 	Entity lightPlaceHolder("cube", "cube.fbx");
 	Renderer renderer(c);
-
 	glfwSetTime(0.0);
 	float timeSinceStart = glfwGetTime();
 	

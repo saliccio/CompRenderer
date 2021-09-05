@@ -8,7 +8,7 @@ namespace ComplementEngine {
 		RenderModel x, y, z;
 
 		GizmoArrows(const std::string& arrowPath)
-			: x(arrowPath), y(arrowPath), z(arrowPath)
+			: x(arrowPath, nullptr), y(arrowPath, nullptr), z(arrowPath, nullptr)
 		{
 			
 		}
@@ -18,10 +18,9 @@ namespace ComplementEngine {
 	private:
 		GizmoArrows m_Arrows;
 		Transform* m_OwnerTransformPtr;
-		glm::mat4 m_CachedModelMatrix;
-
-		void calculateModelMatrix(const glm::vec3& newOwnerPosition);
 	public:
-		Gizmo(Transform& transform, CameraTransform& cameraTransform);
+		Gizmo(Transform& transform);
+
+		void draw(Renderer& renderer);
 	};
 }

@@ -1,13 +1,22 @@
+#include <glm/gtx/norm.hpp>
 #include "Gizmo.h"
 
-void ComplementEngine::Gizmo::calculateModelMatrix(const glm::vec3& dummy)
+ComplementEngine::Gizmo::Gizmo(Transform& ownerTransform)
+	: m_Arrows("arrow.fbx"), m_OwnerTransformPtr(&ownerTransform)		// VOLATILE - ARROW
 {
-	//m_CachedModelMatrix = glm::translate(glm::identity<glm::mat4>(), newOwnerPosition);
+	
 }
 
-ComplementEngine::Gizmo::Gizmo(Transform& transform, CameraTransform& cameraTransform)
-	: m_Arrows("arrow.fbx"), m_OwnerTransformPtr(&transform), m_CachedModelMatrix(m_OwnerTransformPtr->getModelMatrix())					// VOLATILE - ARROW
+void ComplementEngine::Gizmo::draw(Renderer& renderer)
 {
-	transform.onPositionChange += [&](const glm::vec3& newTransform) { calculateModelMatrix(newTransform); };
-	//cameraTransform.onViewMatrixChange += [&](const glm::mat4& newMatrix) { alignToOwnerTransform(newTransform); };
+	glm::mat4 modelMatrix = glm::scale(glm::identity<glm::mat4>(), glm::vec3(0.1f, 0.1f, 1.0f));
+	
+	glm::vec3 ownerRotation = m_OwnerTransformPtr->getRotation();
+	modelMatrix = glm::eulerAngleXYZ(ownerRotation.x, ownerRotation.y, ownerRotation.z) * modelMatrix;
+	
+	modelMatrix = glm::translate(modelMatrix, m_OwnerTransformPtr->getPosition());
+
+	m_Arrows.x.draw(renderer, modelMatrix);
+	m_Arrows.y.draw(renderer, modelMatrix);
+	m_Arrows.z.draw(renderer, modelMatrix);
 }

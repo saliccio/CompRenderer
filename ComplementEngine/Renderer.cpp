@@ -32,6 +32,14 @@ namespace ComplementEngine {
 		E(glDrawElements(GL_TRIANGLES, mesh->indexBuffer.getCount(), GL_UNSIGNED_INT, nullptr));
 	}
 
+	void Renderer::draw(Mesh* mesh, glm::mat4& modelMatrix)
+	{
+		mesh->vertexArray.bind();
+		mesh->indexBuffer.bind();
+		mesh->material.bind(modelMatrix, m_VPMatrix, 10, 11);
+		E(glDrawElements(GL_TRIANGLES, mesh->indexBuffer.getCount(), GL_UNSIGNED_INT, nullptr));
+	}
+
 	void Renderer::clear() const
 	{
 		E(glClearColor(0.5, 0.5, 0.5, 0.5));

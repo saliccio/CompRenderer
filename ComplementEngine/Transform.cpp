@@ -16,6 +16,7 @@ namespace ComplementEngine {
 		//std::cout << m_Position.x << " " << m_Position.y << " " << m_Position.z << std::endl;
 		m_ModelMatrix = glm::translate(m_ModelMatrix, movementVector);
 		onPositionChange(m_Position);
+		onModelMatrixChange(m_ModelMatrix);
 	}
 
 	void Transform::rotate(glm::vec3& rotationVector)
@@ -28,7 +29,7 @@ namespace ComplementEngine {
 		m_Rotation.y += rotationVector.y;
 		m_Rotation.z += rotationVector.z;
 
-		std::cout << m_Rotation.x << " " << m_Rotation.y << " " << m_Rotation.z << std::endl;
+		//std::cout << m_Rotation.x << " " << m_Rotation.y << " " << m_Rotation.z << std::endl;
 
 		glm::vec3 direction;
 		direction.x = cos(glm::radians(m_Rotation.y)) * cos(glm::radians(m_Rotation.x));
@@ -43,6 +44,7 @@ namespace ComplementEngine {
 
 		m_ModelMatrix = glm::eulerAngleXYZ(m_Rotation.x, m_Rotation.y, m_Rotation.z) * m_ModelMatrix;
 		onRotationChange(rotationVector);
+		onModelMatrixChange(m_ModelMatrix);
 	}
 
 	/*void Transform::rotate(const glm::quat& rotationQuaternion)
@@ -81,6 +83,7 @@ namespace ComplementEngine {
 		m_Scale += scaleVector;
 		m_ModelMatrix = glm::scale(glm::mat4(1.0), m_Scale) * m_ModelMatrix;
 		onScaleChange(m_Scale);
+		onModelMatrixChange(m_ModelMatrix);
 	}
 
 	void Transform::setPosition(const glm::vec3 movementVector)
@@ -89,6 +92,7 @@ namespace ComplementEngine {
 		m_Position = movementVector;
 		m_ModelMatrix = glm::translate(glm::mat4(1.0), movementVector) * m_ModelMatrix;
 		onPositionChange(m_Position);
+		onModelMatrixChange(m_ModelMatrix);
 	}
 
 	void Transform::setRotation(glm::vec3& rotationVector)
@@ -119,6 +123,7 @@ namespace ComplementEngine {
 		m_ModelMatrix = glm::eulerAngleXYZ(m_Rotation.x, m_Rotation.y, m_Rotation.z) * m_ModelMatrix;
 		
 		onRotationChange(rotationVector);
+		onModelMatrixChange(m_ModelMatrix);
 	}
 
 	/*void Transform::setRotation(const glm::quat rotationQuaternion)
@@ -159,5 +164,6 @@ namespace ComplementEngine {
 		m_Scale = scaleVector;
 		m_ModelMatrix = glm::scale(glm::mat4(1.0), m_Scale) * m_ModelMatrix;
 		onScaleChange(scaleVector);
+		onModelMatrixChange(m_ModelMatrix);
 	}
 }

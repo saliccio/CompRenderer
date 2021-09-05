@@ -7,25 +7,26 @@ unsigned int ComplementEngine::Entity::generateID()
 }
 
 ComplementEngine::Entity::Entity(const std::string& name)
-	: m_ID(generateID()), m_Name(name)
+	: m_ID(generateID()), m_Name(name), m_Gizmo(transform)
 {
 
 }
 
 
 ComplementEngine::Entity::Entity(const std::string& name, const std::string& modelFilePath)
-	: m_ID(generateID()), m_Name(name), renderComponent(modelFilePath)
+	: m_ID(generateID()), m_Name(name), renderComponent(modelFilePath, &transform), m_Gizmo(transform)
 {
 	
 }
 
 ComplementEngine::Entity::Entity(const std::string& name, Model& model)
-	: m_ID(generateID()), m_Name(name), renderComponent(std::move(model))
+	: m_ID(generateID()), m_Name(name), renderComponent(std::move(model), &transform), m_Gizmo(transform)
 {
 	
 }
 
 ComplementEngine::Entity::Entity(const Entity& other)
+	: m_Gizmo(transform)
 {
 	*this = other;
 }
@@ -47,5 +48,7 @@ bool ComplementEngine::Entity::operator==(const Entity& other)
 
 void ComplementEngine::Entity::draw(Renderer& renderer)
 {
-	renderComponent.draw(renderer, transform);
+	renderComponent.draw(renderer);
+
+	m_Gizmo.draw(renderer);
 }

@@ -19,7 +19,7 @@ namespace ComplementEngine {
 	public:
 		Camera();
 		Camera(bool perspective);
-		Camera(const CameraTransform transform, bool perspective);
+		Camera(const CameraTransform& transform, bool perspective);
 
 		void setProjectionType(bool perspective);
 		void setNearClip(float nearClip);

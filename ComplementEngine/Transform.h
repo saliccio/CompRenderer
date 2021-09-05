@@ -18,6 +18,7 @@ namespace ComplementEngine {
 		EventDispatcher <void, const glm::vec3&> onPositionChange;
 		EventDispatcher <void, const glm::vec3&> onRotationChange;
 		EventDispatcher <void, const glm::vec3&> onScaleChange;
+		EventDispatcher <void, const glm::mat4&> onModelMatrixChange;
 
 		Transform();
 
@@ -33,7 +34,7 @@ namespace ComplementEngine {
 
 		inline const glm::vec3& getPosition() const { return m_Position; }
 		inline const glm::vec4 getPosition4f() const { return glm::vec4(m_Position.x, m_Position.y, m_Position.z, 1.0f); }
-		inline const glm::quat& getRotation() const { return m_Rotation; }
+		inline const glm::vec3& getRotation() const { return m_Rotation; }
 		inline const glm::vec3& getScale() const { return m_Scale; }
 		inline const glm::mat4& getModelMatrix() const { return m_ModelMatrix; }
 		inline const glm::vec3& getForwardVector() const { return m_ForwardVector; }

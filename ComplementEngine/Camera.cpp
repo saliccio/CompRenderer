@@ -24,7 +24,7 @@ namespace ComplementEngine {
 		calculateProjectionMatrix();
 	}
 
-	Camera::Camera(const CameraTransform transform, bool perspective)
+	Camera::Camera(const CameraTransform& transform, bool perspective)
 		: transform(transform), m_Perspective(perspective)
 	{
 		calculateProjectionMatrix();

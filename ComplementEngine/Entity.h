@@ -5,6 +5,7 @@
 #include "Model.h"
 #include "Component.h"
 #include "RenderModel.h"
+#include "Gizmo.h"
 
 namespace ComplementEngine {
 	class Entity {
@@ -12,6 +13,7 @@ namespace ComplementEngine {
 		unsigned int m_ID;
 		std::string m_Name;
 		std::unordered_map<std::type_index, Component> m_Components;
+		Gizmo m_Gizmo;
 	private:
 		static unsigned int generateID();
 	public:

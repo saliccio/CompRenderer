@@ -20,8 +20,10 @@ namespace ComplementEngine {
 
 		inline void setBoundTransformPtr(Transform* transformPtr) { m_BoundTransformPtr = transformPtr; }
 
+		inline Camera& getCamera() { return m_Camera; }
 		void draw(const VertexArray& vertexArray, const IndexBuffer& indexBuffer, const Shader& shader) const;
 		void draw(Mesh* mesh);
+		void draw(Mesh* mesh, glm::mat4& modelMatrix);
 		void clear() const;
 	};
 }
